@@ -10,5 +10,5 @@
 [x] Create a delete button that removes the selected row.
 [x] Render a message when there are no movies in the table.
 
-
+---
      
