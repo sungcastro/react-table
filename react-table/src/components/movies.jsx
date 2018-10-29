@@ -1,61 +1,95 @@
 import React, { Component } from "react";
+import MoviesTable from "./moviesTable";
+import Pagination from "./common/pagination";
+import ListGroup from "./common/listGroup";
 import { getMovies } from "../services/fakeMovieService";
+import { getGenres } from "../services/fakeGenreService";
+import { paginate } from "../utils/paginate";
 
 class Movies extends Component {
   state = {
-    movies: getMovies()
+    movies: [],
+    genres: [],
+    pageSize: 5,
+    currentPage: 1
   };
 
-  handleDelete(movie) {
-    const movies = this.state.movies.filter(m => m._id !== movie._id);
-    this.setState({ movies: movies });
+  componentDidMount() {
+    const genres = [{ name: "All Genres" }, ...getGenres()];
+    this.setState({ movies: getMovies(), genres: genres });
   }
 
-  renderText() {
-    if (this.state.movies.length === 0)
-      return <h2>There are no movies in the Data Base</h2>;
-    return this.state.movies.length;
-  }
+  handleDelete = movie => {
+    const movies = this.state.movies.filter(mo => mo._id !== movie._id);
+    this.setState({ movies: movies });
+  };
+
+  handleLike = movie => {
+    const movies = [...this.state.movies];
+    const index = movies.indexOf(movie);
+    movies[index] = { ...movies[index] };
+    movies[index].liked = !movies[index].liked;
+    this.setState({ movies });
+  };
+
+  handlePageChange = page => {
+    this.setState({ currentPage: page });
+  };
+
+  handleGenreSelect = genre => {
+    this.setState({ selectedGenre: genre, currentPage: 1 });
+  };
 
   render() {
-    return (
-      <div>
-        <span>
-          {this.renderText()}
-          {this.state.movies.length === 0 && (
-            <h6>You deleted all the movies</h6>
-          )}
-        </span>
+    const {
+      pageSize,
+      currentPage,
+      selectedGenre,
+      movies: allMovies
+    } = this.state;
 
-        <table className="table">
-          <thead className="table-dark">
-            <tr>
-              <th>Title📽</th>
-              <th>Genre🍿</th>
-              <th>Stock🗄</th>
-              <th>Rate🧐</th>
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.movies.map(movie => (
-              <tr key={movie._id}>
-                <td>{movie.title}</td>
-                <td>{movie.genre.name}</td>
-                <td>{movie.numberInStock}</td>
-                <td>{movie.dailyRentalRate}</td>
-                <td>
-                  <button
-                    onClick={() => this.handleDelete(movie)}
-                    className="btn btn-outline-danger"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    const { length: count } = this.state.movies;
+
+    if (count === 0) return <h1>It's Britney Bitch</h1>;
+
+    const filtered =
+      selectedGenre && selectedGenre._id
+        ? allMovies.filter(m => m.genre._id === selectedGenre._id)
+        : allMovies;
+
+    const movies = paginate(filtered, currentPage, pageSize);
+
+    return (
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-2">
+            <ListGroup
+              items={this.state.genres}
+              selectedItem={this.state.selectedGenre}
+              onItemSelect={this.handleGenreSelect}
+            />
+          </div>
+          <div className="container">
+            <div className="col">
+              <h3>
+                Showing
+                <span className="text-primary"> {filtered.length} </span> movies
+                in the data base
+              </h3>
+              <MoviesTable
+                movies={movies}
+                handleLike={this.handleLike}
+                handleDelete={this.handleDelete}
+              />
+              <Pagination
+                itemsCount={filtered.length}
+                pageSize={pageSize}
+                currentPage={currentPage}
+                onPageChange={this.handlePageChange}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
