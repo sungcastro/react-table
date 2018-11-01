@@ -2,16 +2,16 @@ import React from "react";
 import Like from "./common/like";
 
 const MoviesTable = props => {
-  const { movies, handleLike, handleDelete } = props;
+  const { movies, onLike, onDelete, onSorting } = props;
 
   return (
     <table className="table mt-4 mb-4">
       <thead className="thead-dark">
         <tr>
-          <th>Title</th>
-          <th>Genre</th>
-          <th>Stock</th>
-          <th>Rate</th>
+          <th onClick={() => onSorting("title")}>Title</th>
+          <th onClick={() => onSorting("genre.name")}>Genre</th>
+          <th onClick={() => onSorting("numberInStock")}>Stock</th>
+          <th onClick={() => onSorting("dailyRentalRate")}>Rate</th>
           <th>Liked</th>
           <th>Action</th>
         </tr>
@@ -24,14 +24,11 @@ const MoviesTable = props => {
             <td>{movie.numberInStock}</td>
             <td>{movie.dailyRentalRate}</td>
             <td>
-              <Like
-                liked={movie.liked}
-                onToggleHeart={() => handleLike(movie)}
-              />
+              <Like liked={movie.liked} onToggleHeart={() => onLike(movie)} />
             </td>
             <td>
               <button
-                onClick={() => handleDelete(movie)}
+                onClick={() => onDelete(movie)}
                 className="btn btn-warning text-white"
               >
                 Delete

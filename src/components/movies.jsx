@@ -5,24 +5,21 @@ import ListGroup from "./common/listGroup";
 import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 import { paginate } from "../utils/paginate";
+import _ from "lodash";
 
 class Movies extends Component {
   state = {
     movies: [],
     genres: [],
     pageSize: 5,
-    currentPage: 1
+    currentPage: 1,
+    sortColum: { column: "title", order: "asc" }
   };
 
   componentDidMount() {
-    const genres = [{ name: "All Genres" }, ...getGenres()];
+    const genres = [{ name: "All Genres", _id: "" }, ...getGenres()];
     this.setState({ movies: getMovies(), genres: genres });
   }
-
-  handleDelete = movie => {
-    const movies = this.state.movies.filter(mo => mo._id !== movie._id);
-    this.setState({ movies: movies });
-  };
 
   handleLike = movie => {
     const movies = [...this.state.movies];
@@ -30,6 +27,23 @@ class Movies extends Component {
     movies[index] = { ...movies[index] };
     movies[index].liked = !movies[index].liked;
     this.setState({ movies });
+  };
+
+  handleDelete = movie => {
+    const movies = this.state.movies.filter(mo => mo._id !== movie._id);
+    this.setState({ movies: movies });
+  };
+
+  handleSorting = column => {
+    const sortColum = { ...this.state.sortColum };
+    if (sortColum.column === column)
+      sortColum.order = sortColum.order === "asc" ? "desc" : "asc";
+    else {
+      sortColum.column = column;
+      sortColum.order = "asc";
+    }
+
+    this.setState({ sortColum });
   };
 
   handlePageChange = page => {
@@ -44,6 +58,7 @@ class Movies extends Component {
     const {
       pageSize,
       currentPage,
+      sortColum,
       selectedGenre,
       movies: allMovies
     } = this.state;
@@ -57,7 +72,9 @@ class Movies extends Component {
         ? allMovies.filter(m => m.genre._id === selectedGenre._id)
         : allMovies;
 
-    const movies = paginate(filtered, currentPage, pageSize);
+    const sorted = _.orderBy(filtered, [sortColum.column], [sortColum.order]);
+
+    const movies = paginate(sorted, currentPage, pageSize);
 
     return (
       <div className="container-fluid">
@@ -78,8 +95,9 @@ class Movies extends Component {
               </h3>
               <MoviesTable
                 movies={movies}
-                handleLike={this.handleLike}
-                handleDelete={this.handleDelete}
+                onLike={this.handleLike}
+                onDelete={this.handleDelete}
+                onSorting={this.handleSorting}
               />
               <Pagination
                 itemsCount={filtered.length}
