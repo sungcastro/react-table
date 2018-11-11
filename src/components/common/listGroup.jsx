@@ -10,7 +10,7 @@ const ListGroup = props => {
   } = props;
 
   return (
-    <div>
+    <div className="mt-5">
       <ul className="list-group">
         {items.map(item => (
           <li
