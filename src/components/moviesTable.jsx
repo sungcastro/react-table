@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Like from "./common/like";
 import TableHeader from "./common/tableHeader";
+import TableBody from "./common/tableBody";
+import Like from "./common/like";
 
 class MoviesTable extends Component {
   columns = [
@@ -8,12 +9,30 @@ class MoviesTable extends Component {
     { path: "genre.name", label: "Genre" },
     { path: "numberInStock", label: "Stock" },
     { path: "dailyRentalRate", label: "Rate" },
-    { key: "like" },
-    { key: "delete" }
+    {
+      key: "like",
+      content: movie => (
+        <Like
+          liked={movie.liked}
+          onToggleHeart={() => this.props.onLike(movie)}
+        />
+      )
+    },
+    {
+      key: "delete",
+      content: movie => (
+        <button
+          onClick={() => this.props.onDelete(movie)}
+          className="btn btn-warning text-white"
+        >
+          Delete
+        </button>
+      )
+    }
   ];
 
   render() {
-    const { movies, sortColum, onLike, onDelete, onSorting } = this.props;
+    const { movies, sortColum, onSorting } = this.props;
 
     return (
       <table className="table mt-4 mb-4">
@@ -22,27 +41,8 @@ class MoviesTable extends Component {
           sortColum={sortColum}
           onSorting={onSorting}
         />
-        <tbody>
-          {movies.map(movie => (
-            <tr key={movie._id}>
-              <td>{movie.title}</td>
-              <td>{movie.genre.name}</td>
-              <td>{movie.numberInStock}</td>
-              <td>{movie.dailyRentalRate}</td>
-              <td>
-                <Like liked={movie.liked} onToggleHeart={() => onLike(movie)} />
-              </td>
-              <td>
-                <button
-                  onClick={() => onDelete(movie)}
-                  className="btn btn-warning text-white"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
+
+        <TableBody columns={this.columns} data={movies} />
       </table>
     );
   }
