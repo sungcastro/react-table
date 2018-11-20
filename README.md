@@ -1,3 +1,10 @@
+## npm
+
+<li>npm i bootstrap@4.1.1 font-awesome@4.7.0</li>
+<li>npm i --save lodash</li>
+<li>npm i react-router-dom@4.3.1</li>
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
