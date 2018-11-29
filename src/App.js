@@ -4,11 +4,13 @@ import Movies from "./components/movies";
 import Coustumers from "./components/customers";
 import Rentals from "./components/rentals";
 import NotFound from "./components/notFound";
+import NavBar from "./components/navBar";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
+        <NavBar />
         <main className="container-fluid mt-4 ">
           <Switch>
             <Route path="/movies" component={Movies} />
