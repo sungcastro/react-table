@@ -6,11 +6,24 @@ class LoginForm extends Component {
     account: {
       username: "",
       password: ""
-    }
+    },
+    errors: {}
+  };
+
+  validate = () => {
+    return {
+      username: "Username is required"
+    };
   };
 
   handleSubmit = e => {
     e.preventDefault();
+
+    const errors = this.validate();
+    this.setState({ errors });
+    if (errors) return;
+
+    //Call to the server
     console.log("submited");
   };
 
@@ -30,12 +43,14 @@ class LoginForm extends Component {
           <form onSubmit={this.handleSubmit}>
             <Input
               name="username"
-              label="User name"
+              type="email"
+              label="Username"
               value={username}
               onChange={this.handleChange}
             />
             <Input
               name="password"
+              type="password"
               label="Password"
               value={password}
               onChange={this.handleChange}
