@@ -27,7 +27,7 @@ class LoginForm extends Component {
 
     const errors = this.validate();
     console.log(errors);
-    this.setState({ errors });
+    this.setState({ errors: errors || {} });
     if (errors) return;
 
     //Call to the server
@@ -41,7 +41,7 @@ class LoginForm extends Component {
   };
 
   render() {
-    const { username, password } = this.state.account;
+    const { account, errors } = this.state;
 
     return (
       <div>
@@ -52,14 +52,16 @@ class LoginForm extends Component {
               name="username"
               type="email"
               label="Username"
-              value={username}
+              value={account.username}
+              error={errors.username}
               onChange={this.handleChange}
             />
             <Input
               name="password"
               type="password"
               label="Password"
-              value={password}
+              value={account.password}
+              error={errors.password}
               onChange={this.handleChange}
             />
             <button className="btn btn-outline-primary btn-block mt-4">
