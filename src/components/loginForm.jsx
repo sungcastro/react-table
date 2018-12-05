@@ -34,6 +34,17 @@ class LoginForm extends Component {
     console.log("submited");
   };
 
+  validateProperty = input => {
+    if (input.name === "username") {
+      if (input.value.trim() === "") return "Username is required.";
+      // ..Other rules
+    }
+    if (input.name === "password") {
+      if (input.value.trim() === "") return "Password is required.";
+      // ..Otherrules
+    }
+  };
+
   handleChange = ({ currentTarget: input }) => {
     const errors = { ...this.state.errors };
     const errorMessage = this.validateProperty(input);
@@ -55,7 +66,7 @@ class LoginForm extends Component {
           <form onSubmit={this.handleSubmit}>
             <Input
               name="username"
-              type="email"
+              type="text"
               label="Username"
               value={account.username}
               error={errors.username}
