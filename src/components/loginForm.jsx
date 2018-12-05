@@ -34,13 +34,13 @@ class LoginForm extends Component {
     console.log("submited");
   };
 
-  validateProperty = input => {
-    if (input.name === "username") {
-      if (input.value.trim() === "") return "Username is required.";
+  validateProperty = ({ name, value }) => {
+    if (name === "username") {
+      if (value.trim() === "") return "Username is required.";
       // ..Other rules
     }
-    if (input.name === "password") {
-      if (input.value.trim() === "") return "Password is required.";
+    if (name === "password") {
+      if (value.trim() === "") return "Password is required.";
       // ..Otherrules
     }
   };
