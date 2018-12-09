@@ -3,6 +3,7 @@
 <li>npm i bootstrap@4.1.1 font-awesome@4.7.0</li>
 <li>npm i --save lodash</li>
 <li>npm i react-router-dom@4.3.1</li>
+<li>npm joi-browser@13.4</li>
 <br>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
