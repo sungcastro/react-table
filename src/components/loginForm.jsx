@@ -12,25 +12,22 @@ class LoginForm extends Component {
   };
 
   schema = {
-    username: Joi.string().required(),
-    password: Joi.string().required()
+    username: Joi.string()
+      .required()
+      .label("Username"),
+    password: Joi.string()
+      .required()
+      .label("Password")
   };
 
   validate = () => {
-    const result = Joi.validate(this.state.account, this.schema, {
-      abortEarly: false
-    });
-    console.log(result);
+    const options = { abortEarly: false };
+    const result = Joi.validate(this.state.account, this.schema, options);
+    if (!result.error) return null;
 
     const errors = {};
-
-    const { username, password } = this.state.account;
-
-    if (username.trim() === "") errors.username = "Username is required";
-
-    if (password.trim() === "") errors.password = "Password is required";
-
-    return Object.keys(errors).length === 0 ? null : errors;
+    for (let item of result.error.details) errors[item.path[0]] = item.message;
+    return errors;
   };
 
   handleSubmit = e => {
