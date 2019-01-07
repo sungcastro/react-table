@@ -84,7 +84,10 @@ class LoginForm extends Component {
               error={errors.password}
               onChange={this.handleChange}
             />
-            <button className="btn btn-outline-primary btn-block mt-4">
+            <button
+              disabled={this.validate()}
+              className="btn btn-primary btn-block mt-4"
+            >
               Login
             </button>
           </form>
