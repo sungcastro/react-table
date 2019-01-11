@@ -1,0 +1,60 @@
+/* 
+  * Methods
+*/
+
+* filter() : The filter() method creates a new array with all elements that pass the test implemented by the provided function.
+             filter() calls a provided callback function once for each element in an array, and constructs a new array of all the values for which callback returns a value that coerces to true.
+
+    var words = ['spay', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+    
+    const result = word.filter(word => word.length > 6);
+    
+    console.log(restult);
+    // output : Array [''exuberant', 'destruction', 'present']; 
+
+    The previous example is the same as : 
+
+    var words = ['spay', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+
+    const result = words.filter(function(word){
+        return word.length > 6;
+    });
+
+    console.log(restult);
+    // output : Array [''exuberant', 'destruction', 'present'];
+
+    <!--  --> 
+    
+    function isBigEnough(value) {
+    return value >= 10;
+    }
+
+    var filtered = [12, 5, 8, 130, 44].filter(isBigEnough);
+    // filtered is [12, 130, 44]
+
+
+* indexOf() : The indexOf() method returns the position of the first occurrence of a specified value in a string.
+              This method returns -1 if the value to search for never occurs.
+              Note: The indexOf() method is case sensitive.    
+             
+              SyntaxSection
+              string.indexOf(searchvalue, start)
+              searchvalue:	Required. The string to search for
+              start:	    Optional. Default 0. At which position to start the search
+
+      var fruits = ["Banana", "Orange", "Apple", "Mango", "Banana", "Orange", "Apple", "Mango"];
+
+      const fruit = fruits.indexOf("Apple");
+
+      console.log(fruit);
+      // output : 2; 
+
+      <!-- -->   
+      
+      var sentence = "Hello world, welcome to the universe.";
+
+      const str = sentence.indexOf("welcome");
+      console.log(str);
+      // output : 13;   
+
+
