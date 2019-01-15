@@ -58,3 +58,18 @@
       // output : 13;   
 
 
+ * Object.keys() : The Object.keys() method returns an array of a given object's own property names, in the same order that we get with                   a normal loop.
+ 
+       const object1 = {
+       a: 'somestring',
+       b: 42,
+       c: false
+     };
+
+     console.log(Object.keys(object1));
+     // expected output: Array ["a", "b", "c"]
+
+     // simple array
+     var arr = ['a', 'b', 'c'];
+     console.log(Object.keys(arr)); 
+     // console: ['0', '1', '2']
