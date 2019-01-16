@@ -73,3 +73,29 @@
      var arr = ['a', 'b', 'c'];
      console.log(Object.keys(arr)); 
      // console: ['0', '1', '2']
+
+* Object properties :  There are different ways to access an object property.
+                       objectName.property
+                       or
+                       objectName["property"]   
+                       or
+                       objectName[expression]
+      var person = {
+       firstname:"John",
+       lastname:"Doe",
+       age:50,
+       eyecolor:"blue"
+     };
+     console.log(person.firsname);
+     // Output: Jhon;
+     
+     <!-- -->   
+      var person = {
+      firstname:"John",
+      lastname:"Doe",
+      age:50,
+      eyecolor:"blue"
+    };
+     console.log(person["firstname"])
+     // Output: Jhon;
+
