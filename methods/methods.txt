@@ -80,22 +80,40 @@
                        objectName["property"]   
                        or
                        objectName[expression]
-      var person = {
-       firstname:"John",
-       lastname:"Doe",
-       age:50,
-       eyecolor:"blue"
-     };
-     console.log(person.firsname);
+        var person = {
+         firstname:"John",
+         lastname:"Doe",
+         age:50,
+         eyecolor:"blue"
+       };
+       console.log(person.firsname);
+       // Output: Jhon;
+
+       <!-- -->   
+        var person = {
+        firstname:"John",
+        lastname:"Doe",
+        age:50,
+        eyecolor:"blue"
+      };
+       console.log(person["firstname"])
      // Output: Jhon;
-     
-     <!-- -->   
-      var person = {
-      firstname:"John",
-      lastname:"Doe",
-      age:50,
-      eyecolor:"blue"
-    };
-     console.log(person["firstname"])
-     // Output: Jhon;
+
+* Computed property names : It allows you to have an expression be computed as a property name on an object.
+
+        var param = 'size';
+        var config = {
+          [param]: 12,
+          ['mobile' + param.charAt(0).toUpperCase() + param.slice(1)]: 4
+        };
+
+        console.log(config); 
+        // Output {size: 12, mobileSize: 4}
+
+      <!-- -->
+        var fruit_var = 'fruit'
+        var eatables = {[fruit_var]: 'Apple', vegetable: 'Carrot'}
+        console.log(eatables) 
+        // Output {fruit: 'Apple', vegetable: 'Carrot'}
+
 
