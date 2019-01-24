@@ -5,6 +5,7 @@ import ListGroup from "./common/listGroup";
 import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 import { paginate } from "../utils/paginate";
+import { Link } from "react-router-dom";
 import _ from "lodash";
 
 class Movies extends Component {
@@ -91,6 +92,10 @@ class Movies extends Component {
           </div>
           <div className="container">
             <div className="col">
+              <Link to="/movies/new" className="btn btn-primary mb-4">
+                New Movie
+              </Link>
+
               <h3>
                 Showing
                 <span className="text-primary"> {totalCount} </span> movies in
