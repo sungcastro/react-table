@@ -132,11 +132,11 @@ class Movies extends Component {
                 New Movie
               </Link>
 
-              <h3>
+              <h5>
                 Showing
                 <span className="text-primary"> {totalCount} </span> movies in
                 the data base
-              </h3>
+              </h5>
               <SearchBox value={searchQuery} onChange={this.handleSearch} />
               <MoviesTable
                 movies={movies}
