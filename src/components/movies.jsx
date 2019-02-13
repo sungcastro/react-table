@@ -112,7 +112,7 @@ class Movies extends Component {
 
     const { length: count } = this.state.movies;
 
-    if (count === 0) return <h1>It's Britney Bitch</h1>;
+    if (count === 0) return <h1 className="text-center">It's Britney Bitch</h1>;
 
     const { totalCount, data: movies } = this.getPageData();
 
