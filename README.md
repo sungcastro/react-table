@@ -32,14 +32,14 @@ in <b>ex.response.data; </b> we take the message that comes from the server, and
 <h1>Storing the JWT</h1>
 <p>When the user successfully log's in,  we get a Json Web Token which is like an identification.
 So at this point we should store this json web token on the the client.
-<br>
-Every Browser has a small little database called local storage. And in this database we can store key value pairs. So when await the promise  <b>await login(data.username, data.password);</b> that we get from our login function, we get the response object. And this response has a property called "data", so we can use object destructuring to pick the data property, but since we already defined data earlier, we are going to rename it to "jsw". 
-<br>
+</p>
+<p>Every Browser has a small little database called local storage. And in this database we can store key value pairs. So when await the promise  <b>await login(data.username, data.password);</b> that we get from our login function, we get the response object. And this response has a property called "data", so we can use object destructuring to pick the data property, but since we already defined data earlier, we are going to rename it to "jsw".  </p>
+
+<p>
 So with this we can get the Json web token in the body of the response.
-<br>
+</p>
 We access to local Storage object, this object has some methods. We are going to call the method 
 <b>setItem</b>. This method takes two parameters, "key" and "value" and both parameters are strings.
-<br>
+<p>
 And after that, we redirect the user to the homepage, as we saw in routing and navigation, the props object has an adittional property called, "history" and this represents the browsers history. Here we can call the push method to navigate the user to a different address.
-
 </p>
