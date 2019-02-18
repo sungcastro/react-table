@@ -26,5 +26,8 @@ So we should sent an http post request to the server.
 
 <h1>Handling the registration Errors</h1>
 <p>If the response is 400, we clone the errors object, and take the username <b>errors.username</b> 
-in ```ex.response.data; ``` we take the message that comes from the server, and render it.
+in 
+```
+ex.response.data; 
+``` we take the message that comes from the server, and render it.
 </p>
