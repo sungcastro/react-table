@@ -13,8 +13,12 @@
 <h1>Saving the Movie</h1>
 <p>
 In the function saveMovie, we should be able to create a movie or updated,
-So we check if movie._id exist, we should update the movie, so we sent an http put request to apiEndPoint, and then we need to pass this movie to the body of the url.<br>
-However, this movie has an id property and our restful api on the backend doesn't like the id property to be in the body of the request, because if we have one id in the url and another in the body of the request which one is correct.<br>
+So we check if movie._id exist, we should update the movie, so we sent an http put request to apiEndPoint, and then we need to pass this movie to the body of the url.
+</p>
+<p>
+However, this movie has an id property and our restful api on the backend doesn't like the id property to be in the body of the request, because if we have one id in the url and another in the body of the request which one is correct.
+</p>
+<p>
 So we need to remove the id from the movie object, but we should not modify this object directly.<br>
 So we need to clone the object, then we delete the id and finally pass it to the body of the request.
 </p>
@@ -38,8 +42,10 @@ So at this point we should store this json web token on the the client.
 <p>
 So with this we can get the Json web token in the body of the response.
 </p>
+<p>
 We access to local Storage object, this object has some methods. We are going to call the method 
 <b>setItem</b>. This method takes two parameters, "key" and "value" and both parameters are strings.
+</p>
 <p>
 And after that, we redirect the user to the homepage, as we saw in routing and navigation, the props object has an adittional property called, "history" and this represents the browsers history. Here we can call the push method to navigate the user to a different address.
 </p>
