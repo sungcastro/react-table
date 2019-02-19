@@ -49,3 +49,29 @@ We access to local Storage object, this object has some methods. We are going to
 <p>
 And after that, we redirect the user to the homepage, as we saw in routing and navigation, the props object has an adittional property called, "history" and this represents the browsers history. Here we can call the push method to navigate the user to a different address.
 </p>
+
+<h1>Storing the JWT</h1>
+<p>
+Whenever the header of the http request starts with an <b>x</b> like <b>x-auth-token</b> is treated like a custom header that is not part of the standard http protocol.
+</p>
+<p> 
+Now (in the back end) the header is set to a json web token. With this when we register a user, we can read this http header, extract the json web token, store it in the local storage and redirect the user. 
+</p>
+<p> 
+In the console, in the headers object, in order to see the our custom header, we need to our back end implementation and set an additional header in the response.
+</p>
+<p>
+Under the routes folder, in users file, we need to write in router.post(...) a standard http header.
+<b>.header("access-control-expose-header", "x-auth-token")</b>
+</p>
+<p> 
+So we call the method header, and pass two arguments. The first one is the key "access-control-expose-headers", this header lets a web server whitelist, the headers that the browser or the client is allow to access. And we set it to "x-auth-token".
+</p>
+<p> 
+If we add this header, the client can read this custom header.
+</p>
+<p> 
+In our registerForm, we call the localStorage.setItem, we set the key to "token" and the value to response.headers and access to the property x-auth-token response.headers["x-auth-token"]
+<br>
+And finally we redirect the user to our home page.
+</p>
