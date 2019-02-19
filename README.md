@@ -50,7 +50,7 @@ We access to local Storage object, this object has some methods. We are going to
 And after that, we redirect the user to the homepage, as we saw in routing and navigation, the props object has an adittional property called, "history" and this represents the browsers history. Here we can call the push method to navigate the user to a different address.
 </p>
 
-<h1>Storing the JWT</h1>
+<h1>Logging in the User upon Registration</h1>
 <p>
 Whenever the header of the http request starts with an <b>x</b> like <b>x-auth-token</b> is treated like a custom header that is not part of the standard http protocol.
 </p>
