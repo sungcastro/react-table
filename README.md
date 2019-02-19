@@ -8,6 +8,7 @@
 <li>npm i axios@0.18.0</li>
 <li>npm i react-toastify@4.1.0</li>
 <li>npm i @sentry/browser</li>
+<li>npm i jwt-decode@2.2.0</li>
 </ul>
 
 <h1>Saving the Movie</h1>
@@ -74,4 +75,30 @@ If we add this header, the client can read this custom header.
 In our registerForm, we call the localStorage.setItem, we set the key to "token" and the value to response.headers and access to the property x-auth-token response.headers["x-auth-token"]
 <br>
 And finally we redirect the user to our home page.
+</p>
+
+<h1>Getting the Current User</h1>
+<p>
+To render the current user in our navBar or to any other components in our component tree, we need to initialize the state to an empty object and get our json webtoken from our local storage in componentDidMount method.
+</p>
+<p>
+In the localStorage we get the item, and give our token as the argument.
+</p>
+<p> 
+This returns a json web token that we need to decode using a library.
+<br>
+In our library jwtDecode we need to pass the json web token jwtDecode(jwt);
+</p>
+<p> 
+What if our application loads and we dont have a json web token in our local storage, that is the case for anonymous users.
+</p>
+<p>
+That is going to throw an error 
+<b>InvalidTokenError: Invalid token specified</b> So if we pass null, an empty string or an invalid json web token to this decode function 
+"const user = jwtDecode(jwt);" we will get an exception.
+</p>
+<p> 
+To solve this issue we need to wrap this lines in a try catch block and if we have any errors, we just ignore it, in our empty catch block.
+<br>
+Because technically this is not an application error, this is only to handle the scenario where we dont have a valid json web token in the local storage.
 </p>
