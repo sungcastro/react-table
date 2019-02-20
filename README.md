@@ -121,3 +121,10 @@ So we need to go back to our login and register forms, and instead of using the 
 <br>
 We need to do a full reload of the application, and as result, our app component will be mounted again.
 </p>
+
+<h1>Loggin out a User</h1>
+<p> 
+If we delete the token key, from our local storage, the user gets log out.
+<br>
+So basically, if we have a json web token in our local storage, that means the user is logged in, otherwise that means they are logged out or anonymous.
+</p>
