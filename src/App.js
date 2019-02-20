@@ -24,10 +24,12 @@ class App extends Component {
   }
 
   render() {
+    const { user } = this.state;
+
     return (
       <div className="App">
         <ToastContainer />
-        <NavBar user={this.state.user} />
+        <NavBar user={user} />
         <main className="container-fluid mt-4 ">
           <Switch>
             <Route path="/register" component={RegisterForm} />

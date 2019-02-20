@@ -63,7 +63,7 @@ In the console, in the headers object, in order to see the our custom header, we
 </p>
 <p>
 Under the routes folder, in users file, we need to write in router.post(...) a standard http header.
-<b>.header("access-control-expose-header", "x-auth-token")</b>
+<b>header("access-control-expose-header", "x-auth-token")</b>
 </p>
 <p> 
 So we call the method header, and pass two arguments. The first one is the key "access-control-expose-headers", this header lets a web server whitelist, the headers that the browser or the client is allow to access. And we set it to "x-auth-token".
@@ -101,4 +101,23 @@ That is going to throw an error
 To solve this issue we need to wrap this lines in a try catch block and if we have any errors, we just ignore it, in our empty catch block.
 <br>
 Because technically this is not an application error, this is only to handle the scenario where we dont have a valid json web token in the local storage.
+</p>
+
+<h1>Displaying the Current User on NavBar</h1>
+<p> 
+If the user doesn't exist, we a going to render the Login and Register links in the navBar, and if exist, we are going to take tha name from the users object and render it in the Navbar.
+</p>
+<p> 
+There is an issue in our implementation, if we login with a valid credential, we will still see the the login and register links.
+But if we refresh the page, the problem goes away.
+</p>
+<p> 
+In our app component, we are getting the json web token from our local storage and decoding it inside of the componentDidMount method. This method is called only once during the lifecycle of our application.
+<br>
+Because our app component is mounted once, and whenever we change the state, its re rendered.
+</p>
+<p> 
+So we need to go back to our login and register forms, and instead of using the history object to take the user to the homepage.
+<br>
+We need to do a full reload of the application, and as result, our app component will be mounted again.
 </p>
