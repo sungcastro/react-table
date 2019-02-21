@@ -62,8 +62,8 @@ Now (in the back end) the header is set to a json web token. With this when we r
 In the console, in the headers object, in order to see the our custom header, we need to our back end implementation and set an additional header in the response.
 </p>
 <p>
-Under the routes folder, in users file, we need to write in router.post(...) a standard http header.
-<b>header("access-control-expose-header", "x-auth-token")</b>
+Under the routes folder, in users file, we need to write in router.post(...) a standard http header
+<b>.header("access-control-expose-headers", "x-auth-token")</b>
 </p>
 <p> 
 So we call the method header, and pass two arguments. The first one is the key "access-control-expose-headers", this header lets a web server whitelist, the headers that the browser or the client is allow to access. And we set it to "x-auth-token".
