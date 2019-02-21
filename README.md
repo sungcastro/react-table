@@ -128,3 +128,10 @@ If we delete the token key, from our local storage, the user gets log out.
 <br>
 So basically, if we have a json web token in our local storage, that means the user is logged in, otherwise that means they are logged out or anonymous.
 </p>
+
+<h1>Refactoring</h1>
+<p>
+If tomorrow, we decide to change the token <<key>> to something else, there are multiple places in our application that we need to modify.
+<br>
+Technically we should have only a single module where we have the implementation of authentication.
+</p>
