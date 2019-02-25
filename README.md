@@ -131,7 +131,24 @@ So basically, if we have a json web token in our local storage, that means the u
 
 <h1>Refactoring</h1>
 <p>
-If tomorrow, we decide to change the token <<key>> to something else, there are multiple places in our application that we need to modify.
+If tomorrow, we decide to change the token <<'key'>> to something else, there are multiple places in our application that we need to modify.
 <br>
 Technically we should have only a single module where we have the implementation of authentication.
+</p>
+
+<h1>Calling Protected API Endpoints</h1>
+<p> 
+This are the end points that require the users to be authenticated or logged in, and potentially have certain permissions.
+</p>
+<p>
+The module httpService is reponsible for making http calls to the back end, and this is the only place where axios is configured.
+</p>
+<p> 
+So, whenever we want to send an http request, we need to include the header in the request. 
+<br>
+<b>axios.defaults.headers.common </b> with this, we can set headers on all kinds of http request. That is get request, post request and so on. We use bracket notation, to set a common header, that is 
+<b>['x-auth-token']</b> and get the user token from local storage. But in here we shouldn't talk directly to the local storage, we are going to use our authService, because that is the only module that knows where this tokens are stored. 
+</p>
+<p> 
+So whenever we have an http request, this header will be included. If the users is not logged in, token will be undefined, so this header will not be set.
 </p>
