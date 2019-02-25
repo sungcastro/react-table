@@ -178,3 +178,11 @@ As we saw in the section, routing and navigation, we can not pass the user objec
 <br>
 In addition to these props, we want to pass the prop that is our user object. And extract it in our movies component.
 </p>
+
+<h1>Protecting Routes</h1>
+<p> 
+Currently, if we go to /movies/new we can access to the form, without even logged in.
+</p>
+<p> 
+So in the app component, we are going to use the same technique on the movies component to protect this route, pass a function and in that function we can check if the current user is null and if that is the case, we will redirect the user, otherwise we will render the movie form component.
+</p>
