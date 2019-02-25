@@ -110,6 +110,8 @@ class Movies extends Component {
       searchQuery
     } = this.state;
 
+    const { user } = this.props;
+
     const { length: count } = this.state.movies;
 
     if (count === 0) return <h1 className="text-center">It's Britney Bitch</h1>;
@@ -128,9 +130,11 @@ class Movies extends Component {
           </div>
           <div className="container">
             <div className="col">
-              <Link to="/movies/new/" className="btn btn-primary mb-4">
-                New Movie
-              </Link>
+              {user && (
+                <Link to="/movies/new/" className="btn btn-primary mb-4">
+                  New Movie
+                </Link>
+              )}
 
               <h5>
                 Showing

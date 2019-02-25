@@ -154,7 +154,6 @@ So whenever we have an http request, this header will be included. If the users 
 </p>
 
 <h1>Fixing Bi-directional Dependencies</h1>
-
 <p> 
 In our http service, we have a dependency to authService and at the same time, in authService we have a dependency to the http service.
 <br>
@@ -166,7 +165,16 @@ In order to fix this, first we need to determine which module is more an essenti
 <p> 
 So our auth module, should be on top of the http module. Instead of http service telling to auth service, "hey, give me your json web token", we can go to auth service, and tell http service, "here is my json web token". So we reverse the statement.
 </p>
-
 <p>
 We have created a very common and dangerous design issue, this is called bi-directional dependency.
+</p>
+
+<h1>Showing or Hiding Elements based on the User</h1>
+<p> 
+In order to show or hide elements if the user is logged in, we need to pass the user object to our movies component and there we will decide to show or hide various elements depending on this user object.
+</p> 
+<p> 
+As we saw in the section, routing and navigation, we can not pass the user object as a property, So in order to pass additional props to the child component "Movies" we need to use the render attribute, so we need to replace component with render, and pass a function that takes props and returns the movies component. We need to give {...props} to the movies component this props includes history, match, and other props that React automatically injects  we we use routing. 
+<br>
+In addition to these props, we want to pass the prop that is our user object. And extract it in our movies component.
 </p>
