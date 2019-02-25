@@ -152,3 +152,21 @@ So, whenever we want to send an http request, we need to include the header in t
 <p> 
 So whenever we have an http request, this header will be included. If the users is not logged in, token will be undefined, so this header will not be set.
 </p>
+
+<h1>Fixing Bi-directional Dependencies</h1>
+
+<p> 
+In our http service, we have a dependency to authService and at the same time, in authService we have a dependency to the http service.
+<br>
+So we have a bidirectional dependency.
+</p>
+<p> 
+In order to fix this, first we need to determine which module is more an essential or core module. In this case is our httpService is the core module. Because if we can not make connections to the backend, the authentication doesn't even make sense.
+</p>
+<p> 
+So our auth module, should be on top of the http module. Instead of http service telling to auth service, "hey, give me your json web token", we can go to auth service, and tell http service, "here is my json web token". So we reverse the statement.
+</p>
+
+<p>
+We have created a very common and dangerous design issue, this is called bi-directional dependency.
+</p>
