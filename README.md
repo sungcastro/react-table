@@ -186,3 +186,20 @@ Currently, if we go to /movies/new we can access to the form, without even logge
 <p> 
 So in the app component, we are going to use the same technique on the movies component to protect this route, pass a function and in that function we can check if the current user is null and if that is the case, we will redirect the user, otherwise we will render the movie form component.
 </p>
+
+<h1>Extracting Protected Route</h1>
+<p> 
+In order for not repeating the logic to protect a route, we can extract this route and put it in a component.
+<br>
+We want this<b>Protected Route</b> to be dynamic, and read what we need from props. 
+</p>
+<p> 
+When we use the route component, we either supply a component or a render function.
+So in our protected route component, its possible that the component from our props is null, so we should also pick the render function from our props. 
+</p>
+<p> 
+So in our return statement we should have a conditional, if our component is trythy, we will return that, otherwise we will call the render function and give the props that we recive.
+</p>
+<p> 
+Its also possible that this object might have other properties, so using the rest operator should add the other additional properties.
+</p>
