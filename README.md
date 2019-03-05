@@ -203,3 +203,26 @@ So in our return statement we should have a conditional, if our component is try
 <p> 
 Its also possible that this object might have other properties, so using the rest operator should add the other additional properties.
 </p>
+
+<h1>Redirecting after login</h1>
+<p> If we want to redirect the user back to where they wanted to go, we need to modify our protected route component. </p>
+<p>The props object has history, location, match objects, that are automatically passed from react router.</p>
+<p>
+The "to" attribute in the redirect component can be a string or an object. more info:
+<b>https://reacttraining.com/react-router/web/api/Redirect</b>
+</p>
+<p> 
+The state can be use to pass any additional data in the component we are redirecting the user to, in our case, the login component.
+</p>
+<p>The location object represent the current location before we redirect the user to the login page.</p>
+<p>Back to our login form component, we need to see if state is set. If it's set, we will redirect the user back 
+where they wanted to go. 
+</p>
+<p>We get the location object, and this location might have a state property, so we can use object destructuring to pick the state property. 
+<br>
+So now, insted of locating the user to the home page, if state is defined, we pick state.from ("that is the custom property that in the protected route component") ("from is a location object, and location objects in react router have a property called <b> pathname </b>")
+otherwise, if state is not defined, we redirect the user to the home page.
+</p>
+<p> 
+Also, if the user is logged in (auth.getCurrentUser) is defined, we can redirect them to the home page.
+</p>
