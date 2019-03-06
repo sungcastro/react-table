@@ -226,3 +226,21 @@ otherwise, if state is not defined, we redirect the user to the home page.
 <p> 
 Also, if the user is logged in (auth.getCurrentUser) is defined, we can redirect them to the home page.
 </p>
+
+<h1>Enviroment Variables</h1>
+<p> 
+The parameters that we set in config.json are not enviroment specific. Every application goes through multiple enviroments.
+<br>
+Development, test and production. Sometimes we want the value of the parameters to be different accross different enviroments. 
+</p>
+<p> 
+In our enviroment file, we can store all our enviroment variables with their default values, we can also have, enviroment specific files <.development, .test, .production> 
+<br>
+Variables have a key and a value, the key should start with <b>REACT_APP_</b> if we dont use prefix, all what we do is not going to work.
+</p>
+<p> 
+If we do "console.log(process.env);" process represents the current process and env is a property of this object that represents all the enviroment variables.
+</p>
+<p>Everytime that we make changes in our .env files, we have to restart our application, because they are not watched.</p>
+<p>In order to get the application name, we should get this property from the enviroment property.(process.env.REACT_APP_NAME);
+</p>
