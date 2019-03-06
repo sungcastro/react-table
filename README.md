@@ -244,3 +244,15 @@ If we do "console.log(process.env);" process represents the current process and 
 <p>Everytime that we make changes in our .env files, we have to restart our application, because they are not watched.</p>
 <p>In order to get the application name, we should get this property from the enviroment property.(process.env.REACT_APP_NAME);
 </p>
+
+<h1>Production Builds</h1>
+<p> 
+npm start, starts our application and give us a development tool, which is not optimized because the javascript bundle that it generates includes additional code that help us debug our application. 
+<br>
+But when we deploy our application to production, we dont want all that extra code. 
+<br>
+We can run npm build.
+</p>
+<p> 
+The build folder is our optimized production build, and we can basically get the content of this folder and send it to the web server using ftp or any other tools.
+</p>
