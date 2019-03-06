@@ -11,6 +11,14 @@
 <li>npm i jwt-decode@2.2.0</li>
 </ul>
 
+## Applications
+
+<ul> 
+<li>Sentry</li>
+<li>Heroku</li>
+<li>mLab</li>
+</ul>
+
 <h1>Saving the Movie</h1>
 <p>
 In the function saveMovie, we should be able to create a movie or updated,
