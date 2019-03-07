@@ -16,7 +16,7 @@
 <ul> 
 <li>Sentry</li>
 <li>Heroku</li>
-<li>mLab</li>
+<li>MongoDB Atlas</li>
 </ul>
 
 <h1>Saving the Movie</h1>
