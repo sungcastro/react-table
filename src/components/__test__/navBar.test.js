@@ -1,10 +1,7 @@
 import React from "react";
 import NavBar from "../navBar";
 import { NavLink } from "react-router-dom";
-
-import { configure, shallow } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-configure({ adapter: new Adapter() });
+import { shallow } from "../../setUpTest";
 
 describe("<NavBar/>", () => {
   let wrapper;
